@@ -1,0 +1,42 @@
+/* Basic styling for the body to center the game container and set background color */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4; /* Light grey background for the page */
+    display: flex; /* Use flexbox for centering */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    height: 100vh; /* Full viewport height */
+    margin: 0; /* Remove default margin */
+}
+
+/* Styling for the main game container */
+.game-container {
+    text-align: center; /* Center text within the container */
+    background-color: white; /* White background for the game container */
+    padding: 20px; /* Add padding inside the container */
+    border-radius: 10px; /* Rounded corners for the container */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow around the container */
+}
+
+/* Styling for all buttons */
+button {
+    padding: 10px 20px; /* Add padding to buttons */
+    font-size: 16px; /* Font size for button text */
+    margin: 10px; /* Margin around buttons */
+    cursor: pointer; /* Pointer cursor on hover */
+    border: none; /* Remove default button border */
+    border-radius: 5px; /* Rounded corners for buttons */
+    background-color: #007bff; /* Blue background for buttons */
+    color: white; /* White text color for buttons */
+}
+
+/* Change button background color on hover */
+button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Styling for the score and timer displays */
+#score, #timer {
+    font-size: 18px; /* Font size for score and timer text */
+    margin: 10px 0; /* Margin above and below the text */
+}
