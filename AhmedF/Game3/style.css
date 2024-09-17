@@ -1,0 +1,58 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #87CEEB; /* Sky blue */
+}
+
+#game-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background: linear-gradient(to bottom, #87CEEB 70%, #228B22 30%); /* Sky and ground */
+}
+
+#monkey {
+    position: absolute;
+    bottom: 50px;
+    left: 50px;
+    width: 50px;
+    height: 80px;
+    background-image: url('monkey.png'); /* Replace with your monkey image */
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#ground {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+    background-color: #228B22; /* Ground color */
+}
+
+.obstacle {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.banana {
+    background-image: url('banana.png'); /* Replace with your banana image */
+}
+
+.bomb {
+    background-image: url('bomb.png'); /* Replace with your bomb image */
+}
+
+#score {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 24px;
+    color: white;
+    font-family: Arial, sans-serif;
+}
