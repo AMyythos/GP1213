@@ -1,15 +1,17 @@
 const monkey = document.getElementById('monkey');
 const scoreElement = document.getElementById('score');
-const obstacles = document.querySelectorAll('.obstacle');
+let obstacles = document.querySelectorAll('.obstacle');
 
 let score = 0;
 let monkeyPositionX = 50;
 let monkeyPositionY = 50;
 let isJumping = false;
 let isRunning = false;
+let gameOver = false; // Track game over state
 const jumpHeight = 150;
 const gravity = 4;
 const obstacleSpeed = 5;
+const monkeySpeed = 5;
 
 function startGame() {
     document.addEventListener('keydown', handleKeydown);
@@ -18,10 +20,13 @@ function startGame() {
 }
 
 function handleKeydown(event) {
-    if (event.code === 'Space') { // Jump on Space key
+    if (event.code === 'Space') {
         jump();
-    } else if (event.code === 'ArrowRight') { // Run on Right Arrow key
+    } else if (event.code === 'ArrowRight') {
         isRunning = true;
+    } else if (event.code === 'ArrowLeft') {
+        monkeyPositionX -= monkeySpeed;
+        monkey.style.left = monkeyPositionX + 'px';
     }
 }
 
@@ -32,7 +37,7 @@ function handleKeyup(event) {
 }
 
 function jump() {
-    if (isJumping) return;
+    if (isJumping || gameOver) return;
     isJumping = true;
     let jumpPeak = 0;
 
@@ -59,27 +64,44 @@ function jump() {
 }
 
 function updateGame() {
+    if (gameOver) return;
+
     if (isRunning) {
-        monkeyPositionX += 5;
+        monkeyPositionX += monkeySpeed;
         monkey.style.left = monkeyPositionX + 'px';
     }
 
+    obstacles = document.querySelectorAll('.obstacle'); // Re-query obstacles
+
     obstacles.forEach(obstacle => {
         let obstacleY = parseInt(getComputedStyle(obstacle).top, 10);
+        
         if (obstacleY > window.innerHeight) {
             obstacle.style.top = '-50px';
             obstacle.style.left = Math.random() * (window.innerWidth - 50) + 'px';
+            
+            // Update score when obstacle goes off screen
             if (obstacle.classList.contains('banana')) {
                 score -= 10;
+            } else if (obstacle.classList.contains('bomb')) {
+                // Handle game over if the obstacle is a bomb
+                gameOver = true;
+                alert("Game Over! Your final score is: " + score);
+                return;
             } else {
                 score += 20;
             }
             updateScore();
         } else {
-            obstacle.style.top = obstacleY + obstacleSpeed + 'px';
+            obstacle.style.top = (obstacleY + obstacleSpeed) + 'px';
             if (isCollision(obstacle)) {
                 if (obstacle.classList.contains('banana')) {
                     score -= 10;
+                } else if (obstacle.classList.contains('bomb')) {
+                    // Handle game over if the obstacle is a bomb
+                    gameOver = true;
+                    alert("Game Over! Your final score is: " + score);
+                    return;
                 } else {
                     score += 20;
                 }
