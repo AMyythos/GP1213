@@ -28,6 +28,9 @@ function startGame() {
 // Function to update the timer and check if time is up
 function updateTimer() {
     // Decrement time left
+    //Comments
+    //اهلا وسهلا 
+    
     timeLeft--;
     // Update the timer display
     timerElement.textContent = `Time: ${timeLeft}`;
